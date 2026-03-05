@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
+import ThreeBackground from './ThreeBackground';
 
 export default function Hero() {
   return (
@@ -7,14 +8,17 @@ export default function Hero() {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <img
-          src="https://images.unsplash.com/photo-1581235720704-06d3acfcb36f?q=80&w=2080&auto=format&fit=crop"
-          alt="Hardware Store Interior"
+          src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=2070&auto=format&fit=crop"
+          alt="Construction Site"
           className="w-full h-full object-cover"
           referrerPolicy="no-referrer"
         />
         <div className="absolute inset-0 bg-primary/80 mix-blend-multiply"></div>
         <div className="absolute inset-0 bg-black/40"></div>
       </div>
+
+      {/* Three.js Background Animation */}
+      <ThreeBackground />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <motion.div
