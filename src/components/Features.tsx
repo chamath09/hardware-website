@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { ShieldCheck, DollarSign, MapPin, Smile, Package } from 'lucide-react';
+import { ShieldCheck, DollarSign, MapPin, Smile, Package, Truck } from 'lucide-react';
 
 const features = [
   {
@@ -26,6 +26,11 @@ const features = [
     icon: <Package size={40} />,
     title: 'Wide Range',
     description: 'From foundation to finishing, find everything you need under one roof.',
+  },
+  {
+    icon: <Truck size={40} />,
+    title: 'Fast Delivery',
+    description: 'We ensure timely delivery of your materials directly to your construction site.',
   },
 ];
 

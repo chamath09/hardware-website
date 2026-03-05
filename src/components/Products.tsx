@@ -23,7 +23,7 @@ const products = [
     id: 4,
     name: 'Steel & Iron',
     description: 'Structural steel, rods, and iron bars for reinforcement.',
-    image: 'https://images.unsplash.com/photo-1535063406530-16b7035cfd5c?q=80&w=2070&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=2070&auto=format&fit=crop',
   },
   {
     id: 5,

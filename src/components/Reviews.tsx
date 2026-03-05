@@ -76,11 +76,11 @@ export default function Reviews() {
           </motion.h2>
         </div>
 
-        <div className="relative max-w-4xl mx-auto">
+        <div className="relative max-w-6xl mx-auto">
           {/* Navigation Buttons */}
           <button 
             onClick={prevReview}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-16 z-10 bg-white p-3 rounded-full shadow-lg text-primary hover:text-accent hover:scale-110 transition-all"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 md:-translate-x-12 z-10 bg-white p-2 rounded-full shadow-lg text-primary hover:text-accent hover:scale-110 transition-all"
             aria-label="Previous review"
           >
             <ChevronLeft size={24} />
@@ -88,7 +88,7 @@ export default function Reviews() {
           
           <button 
             onClick={nextReview}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-16 z-10 bg-white p-3 rounded-full shadow-lg text-primary hover:text-accent hover:scale-110 transition-all"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 md:translate-x-12 z-10 bg-white p-2 rounded-full shadow-lg text-primary hover:text-accent hover:scale-110 transition-all"
             aria-label="Next review"
           >
             <ChevronRight size={24} />
@@ -103,40 +103,47 @@ export default function Reviews() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -50 }}
                 transition={{ duration: 0.5 }}
-                className="bg-white rounded-2xl shadow-xl p-8 md:p-12 text-center relative"
+                className="grid grid-cols-1 md:grid-cols-2 gap-6"
               >
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-accent text-white p-4 rounded-full shadow-lg">
-                  <Quote size={32} fill="currentColor" />
-                </div>
+                {[0, 1].map((offset) => {
+                  const review = reviews[(currentIndex + offset) % reviews.length];
+                  return (
+                    <div key={review.id} className="bg-white rounded-xl shadow-lg p-6 md:p-8 text-center relative">
+                      <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-accent text-white p-3 rounded-full shadow-md">
+                        <Quote size={20} fill="currentColor" />
+                      </div>
 
-                <div className="mt-6 mb-8">
-                  <p className="text-lg md:text-xl text-gray-600 italic leading-relaxed">
-                    "{reviews[currentIndex].text}"
-                  </p>
-                </div>
+                      <div className="mt-4 mb-6">
+                        <p className="text-base text-gray-600 italic leading-relaxed min-h-[80px] flex items-center justify-center">
+                          "{review.text}"
+                        </p>
+                      </div>
 
-                <div className="flex flex-col items-center">
-                  <div className="w-16 h-16 rounded-full overflow-hidden mb-4 border-2 border-accent p-1">
-                    <img 
-                      src={reviews[currentIndex].image} 
-                      alt={reviews[currentIndex].name} 
-                      className="w-full h-full object-cover rounded-full"
-                      referrerPolicy="no-referrer"
-                    />
-                  </div>
-                  <h4 className="text-xl font-bold text-primary font-display">{reviews[currentIndex].name}</h4>
-                  <p className="text-sm text-gray-500 uppercase tracking-wide mb-3">{reviews[currentIndex].role}</p>
-                  <div className="flex gap-1 text-yellow-400">
-                    {[...Array(5)].map((_, i) => (
-                      <Star 
-                        key={i} 
-                        size={18} 
-                        fill={i < reviews[currentIndex].rating ? "currentColor" : "none"} 
-                        className={i < reviews[currentIndex].rating ? "text-yellow-400" : "text-gray-300"}
-                      />
-                    ))}
-                  </div>
-                </div>
+                      <div className="flex flex-col items-center">
+                        <div className="w-14 h-14 rounded-full overflow-hidden mb-3 border-2 border-accent p-1">
+                          <img 
+                            src={review.image} 
+                            alt={review.name} 
+                            className="w-full h-full object-cover rounded-full"
+                            referrerPolicy="no-referrer"
+                          />
+                        </div>
+                        <h4 className="text-lg font-bold text-primary font-display">{review.name}</h4>
+                        <p className="text-xs text-gray-500 uppercase tracking-wide mb-2">{review.role}</p>
+                        <div className="flex gap-1 text-yellow-400">
+                          {[...Array(5)].map((_, i) => (
+                            <Star 
+                              key={i} 
+                              size={16} 
+                              fill={i < review.rating ? "currentColor" : "none"} 
+                              className={i < review.rating ? "text-yellow-400" : "text-gray-300"}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
               </motion.div>
             </AnimatePresence>
           </div>
